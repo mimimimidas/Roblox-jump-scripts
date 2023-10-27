@@ -1,0 +1,5 @@
+local player = game.Players.LocalPlayer
+
+player.Character.Humanoid.Jumping:Connect(function()
+	player.Character.Humanoid.Health = 0
+end)
