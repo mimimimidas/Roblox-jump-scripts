@@ -1,0 +1,20 @@
+--[scripted by VexerMental]
+local jumpCooldown = 1.0
+
+local UserInputService = game:GetService('UserInputService')
+
+local plr = game.Players.LocalPlayer
+local Jumped = false
+
+UserInputService.JumpRequest:Connect(function()
+	local char = plr.Character
+	if not Jumped then
+		if char.Humanoid.FloorMaterial == Enum.Material.Air then return end
+		Jumped = true
+		char.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+		task.wait(jumpCooldown)
+		Jumped = false
+	else
+		char.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping, false)
+	end
+end)
